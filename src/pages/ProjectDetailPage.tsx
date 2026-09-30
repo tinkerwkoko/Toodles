@@ -20,7 +20,7 @@ type ProjectView = 'list' | 'board';
 
 /** `/projects/:id` — project header, task list and kanban board. */
 export function ProjectDetailPage() {
-  const { projectId } = useParams();
+  const { id: projectId } = useParams();
   const navigate = useNavigate();
   const { data, actions } = useToodles();
   const { openCreate, detailTask, setDetailTaskId } = useUi();

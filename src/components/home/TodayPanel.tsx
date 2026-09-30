@@ -24,7 +24,7 @@ export function MoodSnapshot() {
     <Card padding="lg" className="space-y-3">
       <div className="flex items-center justify-between gap-2">
         <h2 className="text-lg">How is today feeling?</h2>
-        <Link to="/wellbeing" className="text-xs font-bold text-lilac-700 hover:underline">
+        <Link to="/wellbeing" className="text-xs font-bold text-ink hover:underline">
           Mood history
         </Link>
       </div>

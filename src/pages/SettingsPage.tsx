@@ -70,7 +70,7 @@ export function SettingsPage() {
           <h2 className="text-lg">Your data</h2>
           <p className="text-sm text-ink-soft">{counts.join(' · ')}</p>
           {storageBlocked && (
-            <p className="rounded-2xl bg-rose-100 px-3 py-2 text-sm text-rose-700">
+            <p className="rounded-2xl bg-rose-100 px-3 py-2 text-sm text-ink">
               This browser is blocking local storage, so changes will not be saved.
             </p>
           )}
@@ -105,8 +105,8 @@ export function SettingsPage() {
               role="status"
               className={
                 message.tone === 'success'
-                  ? 'rounded-2xl bg-mint-100 px-3 py-2 text-sm text-mint-700'
-                  : 'rounded-2xl bg-rose-100 px-3 py-2 text-sm text-rose-700'
+                  ? 'rounded-2xl bg-mint-100 px-3 py-2 text-sm text-ink'
+                  : 'rounded-2xl bg-rose-100 px-3 py-2 text-sm text-ink'
               }
             >
               {message.message}
@@ -159,7 +159,7 @@ export function SettingsPage() {
         </Card>
 
         <Card padding="lg" className="space-y-3 border-rose-200">
-          <h2 className="text-lg text-rose-700">Erase everything</h2>
+          <h2 className="text-lg text-ink">Erase everything</h2>
           <p className="text-sm text-ink-soft">
             This deletes every task, project, diary entry, mood and habit stored in this browser. It
             cannot be undone.

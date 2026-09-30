@@ -28,7 +28,7 @@ export function EmptyState({
   return (
     <div
       className={cx(
-        'flex flex-col items-center rounded-3xl border border-dashed border-lilac-300 bg-lilac-50/80 px-6 text-center',
+        'flex flex-col items-center rounded-2xl border border-dashed border-lilac-300 bg-lilac-50/80 px-6 text-center',
         small ? 'gap-2 py-6' : 'gap-3 py-10',
         className,
       )}

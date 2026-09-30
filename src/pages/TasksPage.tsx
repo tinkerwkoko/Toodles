@@ -158,6 +158,7 @@ export function TasksPage({ scope }: { scope: TaskScope }) {
       )}
     </div>
   );
+}
 
 function ScopeEmptyState({ scope, onCreate }: { scope: TaskScope; onCreate: () => void }) {
   switch (scope) {
@@ -212,6 +213,4 @@ function ScopeEmptyState({ scope, onCreate }: { scope: TaskScope; onCreate: () =
         />
       );
   }
-}
-
 }

@@ -29,9 +29,9 @@ export function TaskCardMeta({ task, showProject = true }: TaskCardMetaProps) {
           <Chip
             tone={
               overdue
-                ? 'border-rose-200 bg-rose-100 text-rose-700'
+                ? 'border-rose-200 bg-rose-100 text-ink'
                 : isToday(task.dueDate)
-                  ? 'border-lilac-300 bg-lilac-100 text-lilac-700'
+                  ? 'border-lilac-300 bg-lilac-100 text-ink'
                   : undefined
             }
           >
