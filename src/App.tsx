@@ -3,10 +3,14 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { Cat } from './components/Cat';
 import { AppShell } from './components/layout/AppShell';
 import { WelcomeScreen } from './components/WelcomeScreen';
+import { CompletedPage } from './pages/CompletedPage';
+import { DiaryPage } from './pages/DiaryPage';
 import { HomePage } from './pages/HomePage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { ProjectsPage } from './pages/ProjectsPage';
+import { SettingsPage } from './pages/SettingsPage';
 import { TasksPage } from './pages/TasksPage';
+import { WellbeingPage } from './pages/WellbeingPage';
 import { ToodlesProvider } from './store/ToodlesProvider';
 import { UiProvider } from './store/UiProvider';
 
@@ -29,9 +33,12 @@ export default function App() {
               <Route path="/today" element={<TasksPage scope="today" />} />
               <Route path="/upcoming" element={<TasksPage scope="upcoming" />} />
               <Route path="/overdue" element={<TasksPage scope="overdue" />} />
-              <Route path="/completed" element={<TasksPage scope="completed" />} />
+              <Route path="/completed" element={<CompletedPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/projects/:id" element={<ProjectDetailPage />} />
+              <Route path="/diary" element={<DiaryPage />} />
+              <Route path="/wellbeing" element={<WellbeingPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AppShell>
@@ -53,7 +60,7 @@ function NotFound() {
       </p>
       <Link
         to="/"
-        className="inline-flex min-h-11 items-center rounded-full bg-lilac-500 px-5 font-semibold text-white shadow-soft transition hover:bg-lilac-600"
+        className="inline-flex min-h-11 items-center rounded-full bg-lilac-300 px-5 font-display text-ink transition hover:bg-lilac-200"
       >
         Back to the overview
       </Link>

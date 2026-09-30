@@ -6,7 +6,7 @@ import { useUi } from '../../store/useUi';
 
 /** Phone navigation: Home · Tasks · + · Projects · Settings. */
 export function BottomNav() {
-  const { openCreate } = useUi();
+  const { openQuickCreate } = useUi();
   const location = useLocation();
   const [home, tasks, projects, settings] = MOBILE_ITEMS;
 
@@ -23,9 +23,9 @@ export function BottomNav() {
         <li className="relative flex flex-1 items-start justify-center">
           <button
             type="button"
-            onClick={() => openCreate('task')}
-            aria-label="Create a task"
-            className="-mt-6 grid h-15 w-15 place-items-center rounded-full border-4 border-lilac-50 bg-lilac-500 text-white shadow-lift transition active:scale-95 hover:bg-lilac-600"
+            onClick={openQuickCreate}
+            aria-label="Create something"
+            className="-mt-6 grid h-15 w-15 place-items-center rounded-full border-4 border-lilac-50 bg-lilac-300 text-ink shadow-lift transition active:scale-95 hover:bg-lilac-600"
           >
             <Plus size={28} strokeWidth={2.6} aria-hidden="true" />
           </button>

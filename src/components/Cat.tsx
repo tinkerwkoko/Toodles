@@ -9,12 +9,12 @@ export interface CatProps {
   title?: string;
 }
 
-const FUR = '#FFFDF8';
-const LINE = '#C6ADEC';
-const BLUSH = '#FBD8E1';
-const NOSE = '#EC8AA1';
-const FACE = '#3A2F4D';
-const ACCENT = '#A484DA';
+const FUR = '#FFFCFA';
+const LINE = '#B592A4';
+const BLUSH = '#F4C3A8';
+const NOSE = '#F4C3A8';
+const FACE = '#4A3540';
+const ACCENT = '#D9BFCC';
 
 /**
  * Toodles — an original round, sleepy cat drawn in plain SVG.
@@ -56,7 +56,7 @@ export function Cat({
         {/* chest tuft */}
         <path
           d="M80 96c-6 6-6 12 0 16 6-4 6-10 0-16z"
-          fill="#F3EAFB"
+          fill="#FFFCFA"
           stroke={LINE}
           strokeWidth={2.5}
           strokeLinejoin="round"
@@ -87,7 +87,7 @@ export function Cat({
         <path
           d="M62 34q6 9 0 16M80 28q6 10 0 18M98 34q-6 9 0 16"
           fill="none"
-          stroke="#E4D6F7"
+          stroke="#D9BFCC"
           strokeWidth={4}
           strokeLinecap="round"
         />
@@ -168,10 +168,10 @@ export function Cat({
       {/* pose extras */}
       {pose === 'sleepy' && (
         <g className={animated ? 'animate-snooze' : undefined} fill={ACCENT} opacity="0.9">
-          <text x="126" y="46" fontSize="20" fontFamily="Fredoka, sans-serif">
+          <text x="126" y="46" fontSize="20" fontFamily="Chewy, cursive">
             z
           </text>
-          <text x="140" y="30" fontSize="14" fontFamily="Fredoka, sans-serif">
+          <text x="140" y="30" fontSize="14" fontFamily="Chewy, cursive">
             z
           </text>
         </g>

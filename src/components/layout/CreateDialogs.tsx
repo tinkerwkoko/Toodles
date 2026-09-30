@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import type { MoodLevel } from '../../types';
 import { Dialog } from '../ui/Dialog';
 import { TaskForm } from '../tasks/TaskForm';
 import { ProjectForm } from '../projects/ProjectForm';
 import { DiaryForm, emptyDiaryForm } from '../diary/DiaryForm';
+import { HabitForm } from '../habits/HabitForm';
+import { MoodPicker } from '../habits/MoodPicker';
 import { Button } from '../ui/Button';
+import { Textarea } from '../ui/Field';
+import { todayString } from '../../lib/date';
 import { useUi } from '../../store/useUi';
 import { useToodles } from '../../store/useToodles';
 import { formValuesFromDefaults, formValuesToInput } from '../tasks/taskFormValues';
@@ -109,6 +115,70 @@ export function CreateDialogs() {
           }}
         />
       </Dialog>
+      <Dialog
+        open={create.kind === 'habit'}
+        onClose={closeCreate}
+        title="A new habit"
+        description="Keep it small enough that a bad day cannot break it."
+      >
+        <HabitForm
+          key={create.kind === 'habit' ? 'habit-open' : 'habit-closed'}
+          submitLabel="Create habit"
+          onSubmit={(values) => {
+            actions.addHabit(values);
+            pushToast(`“${values.name}” is on your list 🌱`, 'success');
+            closeCreate();
+          }}
+        />
+      </Dialog>
+
+      <Dialog
+        open={create.kind === 'mood'}
+        onClose={closeCreate}
+        title="How is today feeling?"
+        description="Just for you, and only in this browser."
+      >
+        <QuickMoodPicker
+          onDone={(mood, note) => {
+            actions.logMood(todayString(), mood, note);
+            pushToast('Mood logged 🌤️', 'success');
+            closeCreate();
+          }}
+        />
+      </Dialog>
     </>
+  );
+}
+
+/** Small standalone mood logger used by the quick-create flow. */
+function QuickMoodPicker({
+  onDone,
+}: {
+  onDone: (mood: MoodLevel, note: string) => void;
+}) {
+  const [mood, setMood] = useState<MoodLevel | null>(null);
+  const [note, setNote] = useState('');
+
+  return (
+    <div className="space-y-4">
+      <MoodPicker
+        value={mood}
+        onChange={setMood}
+        label="Pick the face that fits"
+        compact
+      />
+      <Textarea
+        rows={2}
+        value={note}
+        onChange={(event) => setNote(event.target.value)}
+        placeholder="A short note (optional)"
+        aria-label="Note for today"
+      />
+      <div className="flex justify-end">
+        <Button disabled={!mood} onClick={() => mood && onDone(mood, note)}>
+          Save today's mood
+        </Button>
+      </div>
+    </div>
   );
 }

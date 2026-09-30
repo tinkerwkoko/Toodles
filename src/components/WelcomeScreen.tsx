@@ -43,9 +43,9 @@ export function WelcomeScreen({ onDone }: WelcomeScreenProps) {
   return (
     <SplashShell leaving={leaving} onSkip={() => setLeaving(true)}>
       <div className="flex w-full max-w-md flex-col items-center px-6 text-center">
-        <Cat pose="sleepy" size={168} className="drop-shadow-[0_18px_24px_rgba(110,79,168,0.18)]" />
+        <Cat pose="sleepy" size={168} />
         <h1 className="mt-5 text-5xl leading-none tracking-tight sm:text-6xl">Toodles</h1>
-        <p className="mt-3 text-lg font-semibold text-lilac-700">Small tasks, big calm.</p>
+        <p className="mt-3 text-lg font-bold text-ink">Small tasks, big calm.</p>
 
         <div className="mt-5 flex min-h-16 items-center justify-center">
           <p
@@ -56,10 +56,10 @@ export function WelcomeScreen({ onDone }: WelcomeScreenProps) {
           </p>
         </div>
 
-        <div className="mt-2 h-2 w-52 overflow-hidden rounded-full bg-lilac-200">
-          <div className="h-full rounded-full bg-lilac-500 motion-safe:animate-grow" />
+        <div className="mt-2 h-2 w-52 overflow-hidden rounded-full bg-lilac-100">
+          <div className="h-full rounded-full bg-lilac-300 motion-safe:animate-grow" />
         </div>
-        <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-lilac-500">
+        <p className="mt-3 text-xs font-bold tracking-[0.2em] text-ink-soft uppercase">
           Tucking things away
         </p>
       </div>
@@ -73,12 +73,12 @@ interface SplashShellProps {
   children: ReactNode;
 }
 
-/** Full-screen lilac wash that fades out once the splash is finished. */
+/** Flat cream wash that fades out once the splash is finished. */
 export function SplashShell({ leaving, onSkip, children }: SplashShellProps) {
   return (
     <div
       className={cx(
-        'fixed inset-0 z-60 grid place-items-center bg-linear-to-b from-lilac-100 via-lilac-50 to-lilac-200 transition-opacity duration-300',
+        'fixed inset-0 z-60 grid place-items-center bg-lilac-50 transition-opacity duration-300',
         leaving ? 'pointer-events-none opacity-0' : 'opacity-100',
       )}
     >

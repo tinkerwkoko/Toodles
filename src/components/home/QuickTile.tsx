@@ -14,12 +14,12 @@ export interface QuickTileProps {
 }
 
 const TONES: Record<NonNullable<QuickTileProps['tone']>, string> = {
-  lilac: 'bg-lilac-100 border-lilac-200 text-lilac-700',
-  peach: 'bg-peach-100 border-peach-200 text-peach-700',
-  mint: 'bg-mint-100 border-mint-200 text-mint-700',
-  butter: 'bg-butter-100 border-butter-200 text-butter-700',
-  sky: 'bg-sky-100 border-sky-200 text-sky-700',
-  rose: 'bg-rose-100 border-rose-200 text-rose-700',
+  lilac: 'bg-lilac-300 border-lilac-300 text-ink',
+  peach: 'bg-rose-100 border-rose-100 text-ink',
+  mint: 'bg-mint-100 border-mint-100 text-ink',
+  butter: 'bg-butter-100 border-butter-100 text-ink',
+  sky: 'bg-sky-100 border-sky-100 text-ink',
+  rose: 'bg-peach-300 border-peach-300 text-peach-700',
 };
 
 /** One soft tile that leads somewhere useful. */

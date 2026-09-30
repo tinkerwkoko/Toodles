@@ -50,8 +50,8 @@ export function TaskDetail({ task, onDeleted }: TaskDetailProps) {
         <div className="min-w-0 flex-1">
           <h2
             className={cx(
-              'font-display text-2xl leading-snug wrap-break-word',
-              done ? 'text-ink-soft line-through' : 'text-lilac-700',
+              'font-title text-2xl font-medium leading-snug wrap-break-word',
+              done ? 'text-ink-soft line-through' : 'text-ink',
             )}
           >
             {task.title}

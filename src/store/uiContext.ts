@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import type { DateString, NewTaskInput, Task } from '../types';
 
-export type CreateKind = 'task' | 'project' | 'diary' | null;
+export type CreateKind = 'task' | 'project' | 'diary' | 'habit' | 'mood' | null;
 
 export interface CreateIntent {
   kind: CreateKind;
@@ -26,6 +26,11 @@ export interface UiContextValue {
   create: CreateIntent;
   openCreate: (kind: Exclude<CreateKind, null>, options?: Omit<CreateIntent, 'kind'>) => void;
   closeCreate: () => void;
+
+  /** The quick-create chooser behind the big `+` button. */
+  quickOpen: boolean;
+  openQuickCreate: () => void;
+  closeQuickCreate: () => void;
 
   searchTerm: string;
   setSearchTerm: (value: string) => void;

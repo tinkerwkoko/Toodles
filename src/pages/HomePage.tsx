@@ -9,6 +9,7 @@ import { TaskList } from '../components/tasks/TaskList';
 import { HeroCard } from '../components/home/HeroCard';
 import { HomeStats, HomeTiles } from '../components/home/HomeStats';
 import { HabitsSnapshot, MoodSnapshot, RecentEntry } from '../components/home/TodayPanel';
+import { HomeLists } from '../components/home/HomeLists';
 import { formatLongDay, greetingTimeOfDay, todayString } from '../lib/date';
 import { completionStreak, filterByScope, isTaskCompletedToday, sortTasks } from '../lib/task';
 import { useToodles } from '../store/useToodles';
@@ -122,6 +123,13 @@ export function HomePage() {
               <MoodSnapshot />
               <HabitsSnapshot />
               <RecentEntry />
+              <HomeLists
+                overdue={filterByScope(data.tasks, 'overdue')}
+                upcoming={filterByScope(data.tasks, 'upcoming')}
+                projects={data.projects.filter((project) => !project.archived)}
+                onOpenTask={(task) => setDetailTaskId(task.id)}
+                onCreate={() => openCreate('task')}
+              />
             </div>
           </div>
         </>

@@ -1,61 +1,81 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   Toodles design tokens — soft lilac storybook palette.
+   Toodles design tokens — mauve and cream.
    Tailwind v4: these become utilities (bg-lilac-100, text-ink, ...).
    ------------------------------------------------------------------ */
 @theme {
-  --font-display: 'Fredoka', ui-rounded, 'Segoe UI', system-ui, sans-serif;
-  --font-sans: 'Nunito', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  /* Type: Chewy for display, Fredoka for item titles, Handlee for body. */
+  --font-display: 'Chewy', cursive;
+  --font-title: 'Fredoka', sans-serif;
+  --font-sans: 'Handlee', cursive;
 
-  --color-lilac-50: #f6f1fc;
-  --color-lilac-100: #ede3fa;
-  --color-lilac-200: #dccbf4;
-  --color-lilac-300: #c6adec;
-  --color-lilac-400: #b79be3;
-  --color-lilac-500: #a484da;
-  --color-lilac-600: #8b67c6;
-  --color-lilac-700: #6e4fa8;
+  /* Core palette */
+  --color-lilac-50: #f8f2ef; /* page background */
+  --color-lilac-100: #f1e7e6; /* sidebar + icon rail */
+  --color-lilac-200: #e4d0d9; /* borders and dividers */
+  --color-lilac-300: #d9bfcc; /* selected states */
+  --color-lilac-400: #c9a9b8; /* subtle accent marks */
+  --color-lilac-500: #d9bfcc; /* primary buttons, active nav */
+  --color-lilac-600: #b592a4; /* hover / stronger accent */
+  --color-lilac-700: #4a3540; /* headings and strong text */
 
-  --color-ink: #3a2f4d;
-  --color-ink-soft: #6b6180;
-  --color-cream: #fffdf8;
+  --color-ink: #4a3540; /* main text */
+  --color-ink-soft: #85697a; /* secondary text and inactive icons */
+  --color-cream: #fffcfa; /* cards, inputs, modals, bottom nav */
 
-  --color-peach-100: #fff2e8;
-  --color-peach-200: #ffe1cc;
-  --color-peach-300: #ffcba8;
-  --color-peach-500: #f0a473;
-  --color-peach-700: #a55f2a;
+  /* Tags and chips */
+  --color-peach-100: #fff6ef;
+  --color-peach-200: #ebd3c4;
+  --color-peach-300: #f4c3a8; /* highlighted labels, progress track */
+  --color-peach-500: #e59f7c; /* progress fill */
+  --color-peach-700: #5a4238; /* text on peach */
 
-  --color-mint-100: #e9f7f1;
-  --color-mint-200: #d2eedf;
-  --color-mint-300: #b0dfc8;
-  --color-mint-500: #6fc29b;
-  --color-mint-700: #2e7a57;
+  /* Pastel set shared by kanban columns, cards and subtasks */
+  --color-mint-100: #dce6d3;
+  --color-mint-200: #dce6d3;
+  --color-mint-300: #dce6d3;
+  --color-mint-500: #b7c9ac;
+  --color-mint-700: #4a3540;
 
-  --color-butter-100: #fdf7e3;
-  --color-butter-200: #faedc4;
-  --color-butter-300: #f4dd96;
-  --color-butter-500: #e5be5c;
-  --color-butter-700: #8a691a;
+  --color-butter-100: #f6eac2;
+  --color-butter-200: #f6eac2;
+  --color-butter-300: #f6eac2;
+  --color-butter-500: #e3d39a;
+  --color-butter-700: #4a3540;
 
-  --color-sky-100: #eaf3fd;
-  --color-sky-200: #d5e6fb;
-  --color-sky-300: #b5d4f5;
-  --color-sky-500: #74acea;
-  --color-sky-700: #2d5e96;
+  --color-sky-100: #d3e2ec;
+  --color-sky-200: #d3e2ec;
+  --color-sky-300: #d3e2ec;
+  --color-sky-500: #a9c4d6;
+  --color-sky-700: #4a3540;
 
-  --color-rose-100: #fdeef2;
-  --color-rose-200: #fbd8e1;
-  --color-rose-300: #f7bccb;
-  --color-rose-500: #ec8aa1;
-  --color-rose-700: #a04560;
+  /* Warm tan — used for overdue and other "needs attention" states. */
+  --color-rose-100: #f3dccb;
+  --color-rose-200: #f3dccb;
+  --color-rose-300: #f3dccb;
+  --color-rose-500: #d9bfcc;
+  --color-rose-700: #4a3540;
 
-  --shadow-soft: 0 10px 24px -14px rgb(110 79 168 / 0.35);
-  --shadow-lift: 0 18px 40px -20px rgb(110 79 168 / 0.45);
-  --shadow-pop: 0 6px 0 -1px rgb(110 79 168 / 0.18);
+  /* Home stat tiles, in order */
+  --color-stat-1: #d3e2ec;
+  --color-stat-2: #f3dccb;
+  --color-stat-3: #dce6d3;
+
+  /* Flat, quiet surfaces: no heavy shadows. */
+  --shadow-soft: 0 1px 2px rgb(74 53 64 / 0.04);
+  --shadow-lift: 0 4px 12px rgb(74 53 64 / 0.08);
+  --shadow-pop: none;
 
   --radius-4xl: 2rem;
+  /* Cards and inputs use 16px corners. */
+  --radius-card: 16px;
+  --radius-field: 16px;
+
+  /* Body copy 15px, tags 13px. */
+  --text-xs: 13px;
+  --text-sm: 14px;
+  --text-base: 15px;
 
   --animate-fade-in: fade-in 320ms ease-out both;
   --animate-slide-up: slide-up 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -153,6 +173,8 @@
     background-color: var(--color-lilac-50);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -162,9 +184,20 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--color-lilac-700);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  h2,
+  h3,
+  h4 {
+    font-size: 20px;
   }
 
   * {
@@ -172,7 +205,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-lilac-500);
+    outline: 2px solid var(--color-ink-soft);
     outline-offset: 2px;
     border-radius: 0.75rem;
   }

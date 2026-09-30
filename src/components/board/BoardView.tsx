@@ -132,7 +132,7 @@ export function BoardView({ project, tasks, columns, onOpenTask, onAddTask }: Bo
 
       <DragOverlay>
         {activeTask ? (
-          <p className="rotate-2 rounded-2xl border border-lilac-300 bg-cream px-4 py-3 font-display shadow-lift">
+          <p className="rotate-2 rounded-2xl border-[1.5px] border-lilac-200 bg-cream px-4 py-3 font-title font-medium shadow-lift">
             {activeTask.title}
           </p>
         ) : null}

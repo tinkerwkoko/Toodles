@@ -8,10 +8,10 @@ export interface CatFaceProps {
   decorative?: boolean;
 }
 
-const FUR = '#FFFDF8';
-const LINE = '#C6ADEC';
-const FACE = '#3A2F4D';
-const NOSE = '#EC8AA1';
+const FUR = '#FFFCFA';
+const LINE = '#B592A4';
+const FACE = '#4A3540';
+const NOSE = '#F4C3A8';
 
 /** Five little cat expressions used by the mood tracker. */
 export function CatFace({ mood, size = 40, className, decorative = true }: CatFaceProps) {
@@ -78,8 +78,8 @@ export function CatFace({ mood, size = 40, className, decorative = true }: CatFa
       )}
 
       <path d="M29 38h6l-3 3z" fill={NOSE} />
-      <ellipse cx="17" cy="41" rx="4" ry="2.6" fill="#FBD8E1" opacity="0.85" />
-      <ellipse cx="47" cy="41" rx="4" ry="2.6" fill="#FBD8E1" opacity="0.85" />
+      <ellipse cx="17" cy="41" rx="4" ry="2.6" fill="#F4C3A8" opacity="0.85" />
+      <ellipse cx="47" cy="41" rx="4" ry="2.6" fill="#F4C3A8" opacity="0.85" />
     </svg>
   );
 }

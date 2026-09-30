@@ -108,7 +108,7 @@ export function ProjectDetailPage() {
             <button
               type="button"
               onClick={() => addTask()}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-lilac-500 px-5 font-semibold text-white shadow-soft transition hover:bg-lilac-600"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-lilac-300 px-5 font-display text-ink transition hover:bg-lilac-200"
             >
               <Plus size={18} aria-hidden="true" />
               New task

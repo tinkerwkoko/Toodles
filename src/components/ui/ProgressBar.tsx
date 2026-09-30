@@ -13,7 +13,7 @@ export interface ProgressBarProps {
 export function ProgressBar({
   value,
   label,
-  tone = 'bg-lilac-500',
+  tone = 'bg-peach-500',
   className,
   size = 'sm',
 }: ProgressBarProps) {
@@ -26,7 +26,7 @@ export function ProgressBar({
       aria-valuemax={100}
       aria-label={label ?? 'Progress'}
       className={cx(
-        'w-full overflow-hidden rounded-full bg-lilac-100',
+        'w-full overflow-hidden rounded-full bg-peach-300',
         size === 'sm' ? 'h-2' : 'h-3',
         className,
       )}

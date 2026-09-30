@@ -17,14 +17,14 @@ export function StatTile({ label, value, hint, icon, className }: StatTileProps)
       {icon && (
         <span
           aria-hidden="true"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-lilac-100 text-lilac-700"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-lilac-300 text-ink"
         >
           {icon}
         </span>
       )}
       <div className="min-w-0">
         <p className="font-display text-xl leading-none text-ink">{value}</p>
-        <p className="truncate text-xs font-bold text-lilac-700">{label}</p>
+        <p className="truncate text-xs font-bold text-ink-soft">{label}</p>
         {hint && <p className="truncate text-xs text-ink-soft">{hint}</p>}
       </div>
     </Card>

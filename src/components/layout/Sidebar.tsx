@@ -15,11 +15,11 @@ export function Sidebar() {
   ).length;
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 flex-col border-r border-lilac-200 bg-lilac-100/70 lg:flex">
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 flex-col border-r border-lilac-200 bg-lilac-100 lg:flex">
       <div className="flex items-center gap-3 px-5 py-5">
         <Cat pose="curious" size={54} animated={false} />
         <div className="min-w-0">
-          <p className="font-display text-2xl leading-none text-lilac-700">Toodles</p>
+          <p className="font-display text-2xl leading-none text-ink">Toodles</p>
           <p className="truncate text-xs font-semibold text-ink-soft">Small tasks, big calm.</p>
         </div>
       </div>
@@ -71,7 +71,7 @@ function SidebarLink({ to, label, icon: Icon, badge, subtle = false }: SidebarLi
         cx(
           'flex min-h-11 items-center gap-3 rounded-2xl px-3 py-2 text-[0.95rem] font-bold transition',
           isActive
-            ? 'bg-lilac-500 text-white shadow-soft'
+            ? 'bg-lilac-300 text-ink'
             : 'text-ink hover:bg-lilac-200/60',
           subtle && 'text-sm font-semibold text-ink-soft',
         )
@@ -79,13 +79,13 @@ function SidebarLink({ to, label, icon: Icon, badge, subtle = false }: SidebarLi
     >
       {({ isActive }) => (
         <>
-          <Icon size={19} aria-hidden="true" className={isActive ? 'text-white' : 'text-lilac-500'} />
+          <Icon size={19} aria-hidden="true" className={isActive ? 'text-ink' : 'text-ink-soft'} />
           <span className="flex-1 truncate">{label}</span>
           {typeof badge === 'number' && badge > 0 && (
             <span
               className={cx(
                 'rounded-full px-2 py-0.5 text-xs font-bold',
-                isActive ? 'bg-white/25 text-white' : 'bg-rose-200 text-rose-700',
+                isActive ? 'bg-cream/70 text-ink' : 'bg-rose-100 text-ink',
               )}
             >
               {badge}

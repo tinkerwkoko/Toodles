@@ -6,16 +6,29 @@ import { useToodles } from './useToodles';
 export function UiProvider({ children }: { children: ReactNode }) {
   const { data } = useToodles();
   const [create, setCreate] = useState<CreateIntent>({ kind: null });
+  const [quickOpen, setQuickOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [detailTaskId, setDetailTaskId] = useState<string | null>(null);
   const [celebratedTaskId, setCelebratedTaskId] = useState<string | null>(null);
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const openCreate = useCallback<UiContextValue['openCreate']>((kind: Exclude<CreateKind, null>, options) => {
-    setCreate({ kind, defaults: options?.defaults, diaryDate: options?.diaryDate ?? null });
-  }, []);
+  const openCreate = useCallback<UiContextValue['openCreate']>(
+    (kind: Exclude<CreateKind, null>, options) => {
+      setQuickOpen(false);
+      setCreate({ kind, defaults: options?.defaults, diaryDate: options?.diaryDate ?? null });
+    },
+    [],
+  );
 
   const closeCreate = useCallback(() => setCreate({ kind: null }), []);
+
+  // Opening a real form closes the chooser so only one overlay is ever shown.
+  const openQuickCreate = useCallback(() => {
+    setCreate({ kind: null });
+    setQuickOpen(true);
+  }, []);
+
+  const closeQuickCreate = useCallback(() => setQuickOpen(false), []);
 
   const pushToast = useCallback<UiContextValue['pushToast']>((message, tone = 'default') => {
     const id = `toast-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -46,6 +59,9 @@ export function UiProvider({ children }: { children: ReactNode }) {
       create,
       openCreate,
       closeCreate,
+      quickOpen,
+      openQuickCreate,
+      closeQuickCreate,
       searchTerm,
       setSearchTerm,
       detailTask,
@@ -60,6 +76,9 @@ export function UiProvider({ children }: { children: ReactNode }) {
       create,
       openCreate,
       closeCreate,
+      quickOpen,
+      openQuickCreate,
+      closeQuickCreate,
       searchTerm,
       detailTask,
       celebratedTaskId,

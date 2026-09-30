@@ -7,7 +7,7 @@ import { useUi } from '../../store/useUi';
 
 /** Slim icon rail for tablets (md → lg), so the phone bar never stretches. */
 export function IconRail() {
-  const { openCreate } = useUi();
+  const { openQuickCreate } = useUi();
 
   return (
     <nav
@@ -20,9 +20,9 @@ export function IconRail() {
 
       <button
         type="button"
-        onClick={() => openCreate('task')}
-        aria-label="Create a task"
-        className="mb-2 grid h-12 w-12 place-items-center rounded-full bg-lilac-500 text-white shadow-soft transition hover:bg-lilac-600 active:scale-95"
+        onClick={openQuickCreate}
+        aria-label="Create something"
+        className="mb-2 grid h-12 w-12 place-items-center rounded-full bg-lilac-300 text-ink transition hover:bg-lilac-200 active:scale-95"
       >
         <Plus size={22} strokeWidth={2.6} aria-hidden="true" />
       </button>
@@ -37,15 +37,13 @@ export function IconRail() {
               className={({ isActive }) =>
                 cx(
                   'flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-2xl text-[0.62rem] font-bold transition',
-                  isActive
-                    ? 'bg-lilac-500 text-white shadow-soft'
-                    : 'text-ink-soft hover:bg-lilac-200/60',
+                  isActive ? 'bg-lilac-300 text-ink' : 'text-ink-soft hover:bg-lilac-100',
                 )
               }
             >
               {({ isActive }) => (
                 <>
-                  <item.icon size={19} aria-hidden="true" className={isActive ? 'text-white' : ''} />
+                  <item.icon size={19} aria-hidden="true" className={isActive ? 'text-ink' : ''} />
                   <span className="truncate">{item.shortLabel}</span>
                 </>
               )}

@@ -119,7 +119,7 @@ export function BoardCard({ task, columns, onOpen, dragEnabled }: BoardCardProps
         >
           <h3
             className={cx(
-              'font-display text-[0.98rem] leading-snug wrap-break-word',
+              'font-title text-[17px] font-medium leading-snug wrap-break-word',
               done ? 'text-ink-soft line-through' : 'text-ink',
             )}
           >
@@ -135,13 +135,7 @@ export function BoardCard({ task, columns, onOpen, dragEnabled }: BoardCardProps
       <div className="mt-2 flex flex-wrap items-center gap-1.5">
         {task.dueDate && (
           <Chip
-            tone={
-              overdue
-                ? 'border-rose-200 bg-rose-100 text-rose-700'
-                : isToday(task.dueDate)
-                  ? 'border-lilac-300 bg-lilac-100 text-lilac-700'
-                  : undefined
-            }
+            tone={overdue ? 'border-rose-200 bg-rose-100 text-ink' : isToday(task.dueDate) ? 'border-lilac-200 bg-lilac-300 text-ink' : undefined}
           >
             <CalendarDays size={13} aria-hidden="true" />
             {overdue ? 'Overdue · ' : ''}
@@ -161,7 +155,7 @@ export function BoardCard({ task, columns, onOpen, dragEnabled }: BoardCardProps
         <ProgressBar
           value={progress.percent}
           label={`Subtasks for ${task.title}`}
-          tone={progress.done === progress.total ? 'bg-mint-500' : 'bg-lilac-500'}
+          tone={progress.done === progress.total ? 'bg-mint-300' : 'bg-lilac-300'}
           className="mt-2"
         />
       )}
@@ -171,7 +165,7 @@ export function BoardCard({ task, columns, onOpen, dragEnabled }: BoardCardProps
           type="button"
           onClick={() => setShowSteps((current) => !current)}
           aria-expanded={showSteps}
-          className="mt-2 min-h-9 rounded-full bg-lilac-100 px-3 text-xs font-bold text-lilac-700 hover:bg-lilac-200"
+          className="mt-2 min-h-11 rounded-full bg-lilac-300 px-3 text-xs font-bold text-ink hover:bg-lilac-200"
         >
           {showSteps ? 'Hide steps' : `Steps (${progress.done}/${progress.total})`}
         </button>

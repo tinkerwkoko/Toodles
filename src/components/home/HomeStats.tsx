@@ -34,24 +34,28 @@ export function HomeStats({
         label="Tasks due today"
         value={String(dueToday)}
         icon={<CalendarDays size={18} aria-hidden="true" />}
+        className="bg-stat-1 border-stat-1"
       />
       <StatTile
         label="Finished today"
         value={String(completedToday)}
         hint="Little wins count"
         icon={<CheckCircle2 size={18} aria-hidden="true" />}
+        className="bg-stat-2 border-stat-2"
       />
       <StatTile
         label="Current streak"
         value={streak === 0 ? '—' : `${streak} day${streak === 1 ? '' : 's'}`}
         hint={streak > 0 ? 'Keep it cosy' : 'Tick one off to start'}
         icon={<Flame size={18} aria-hidden="true" />}
+        className="bg-stat-3 border-stat-3"
       />
       <StatTile
         label="Open tasks"
         value={String(openCount)}
         hint={`${projectCount} project${projectCount === 1 ? '' : 's'}`}
         icon={<ListChecks size={18} aria-hidden="true" />}
+        className="bg-cream border-lilac-200"
       />
     </section>
   );

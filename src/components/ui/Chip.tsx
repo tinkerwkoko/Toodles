@@ -14,7 +14,7 @@ export function Chip({ children, className, tone, size = 'sm' }: ChipProps) {
   return (
     <span
       className={cx(
-        'inline-flex max-w-full items-center gap-1.5 rounded-full border border-lilac-200 bg-lilac-50 font-semibold text-ink-soft',
+        'inline-flex max-w-full items-center gap-1.5 rounded-full border-[1.5px] border-peach-200 bg-peach-100 font-semibold text-peach-700',
         size === 'sm' ? 'px-2.5 py-0.5 text-xs' : 'px-3 py-1 text-sm',
         tone,
         className,

@@ -41,8 +41,8 @@ export function SegmentedControl<T extends string>({
             className={cx(
               'inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-bold transition',
               active
-                ? 'border-lilac-500 bg-lilac-500 text-white shadow-soft'
-                : 'border-lilac-200 bg-cream text-lilac-700 hover:bg-lilac-100',
+                ? 'border-lilac-300 bg-lilac-300 text-ink'
+                : 'border-lilac-200 bg-cream text-ink hover:bg-lilac-100',
             )}
           >
             {option.label}
@@ -50,7 +50,7 @@ export function SegmentedControl<T extends string>({
               <span
                 className={cx(
                   'rounded-full px-2 py-0.5 text-xs',
-                  active ? 'bg-white/25 text-white' : 'bg-lilac-100 text-lilac-700',
+                  active ? 'bg-cream/60 text-ink' : 'bg-lilac-100 text-ink-soft',
                 )}
               >
                 {option.count}

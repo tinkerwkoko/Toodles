@@ -35,9 +35,12 @@ export function TaskCheckbox({
         onChange();
       }}
       className={cx(
+        // Completed checkbox is filled mauve with a dark check icon.
         'grid shrink-0 place-items-center rounded-full border-2 transition duration-200',
         dimension,
-        checked ? cx(tone.solid, 'border-transparent') : 'border-lilac-300 bg-cream hover:border-lilac-500',
+        checked
+          ? cx('border-transparent', tone.solid)
+          : 'border-lilac-200 bg-cream hover:border-lilac-600',
         className,
       )}
     >

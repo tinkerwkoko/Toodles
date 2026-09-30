@@ -5,11 +5,11 @@ export type ButtonVariant = 'primary' | 'soft' | 'ghost' | 'outline' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const VARIANTS: Record<ButtonVariant, string> = {
-  primary: 'bg-lilac-500 text-white shadow-soft hover:bg-lilac-600 active:bg-lilac-700',
-  soft: 'bg-lilac-100 text-lilac-700 border border-lilac-200 hover:bg-lilac-200',
-  ghost: 'bg-transparent text-lilac-700 hover:bg-lilac-100',
+  primary: 'bg-lilac-300 text-ink hover:bg-lilac-600',
+  soft: 'bg-cream text-ink border border-lilac-200 hover:bg-lilac-50',
+  ghost: 'bg-transparent text-ink hover:bg-lilac-100',
   outline: 'bg-cream text-ink border border-lilac-200 hover:bg-lilac-50',
-  danger: 'bg-rose-500 text-white shadow-soft hover:bg-rose-700',
+  danger: 'bg-peach-300 text-peach-700 hover:bg-peach-200',
 };
 
 const SIZES: Record<ButtonSize, string> = {
@@ -39,8 +39,9 @@ export function Button({
     <button
       type={type}
       className={cx(
-        'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-200',
-        'focus-visible:outline-3 focus-visible:outline-offset-2',
+        // Pill buttons in Chewy. text-sm/body is 14–15px, tags 13px elsewhere.
+        'inline-flex items-center justify-center gap-2 rounded-full font-display transition duration-200',
+        'focus-visible:outline-2 focus-visible:outline-offset-2',
         'active:scale-[0.97] disabled:pointer-events-none disabled:opacity-45',
         VARIANTS[variant],
         SIZES[size],

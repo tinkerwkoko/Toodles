@@ -44,9 +44,9 @@ export function TaskCard({
   return (
     <article
       className={cx(
-        'group relative flex gap-3 rounded-3xl border bg-cream p-3.5 shadow-soft transition sm:p-4',
+        'group relative flex gap-3 rounded-2xl border-[1.5px] bg-cream p-3.5 shadow-soft transition sm:p-4',
         selected
-          ? 'border-lilac-500 ring-2 ring-lilac-200'
+          ? 'border-lilac-300 ring-2 ring-lilac-200'
           : 'border-lilac-200 hover:-translate-y-0.5 hover:shadow-lift',
         celebrating && 'motion-safe:animate-pop',
         className,
@@ -69,7 +69,7 @@ export function TaskCard({
         >
           <h3
             className={cx(
-              'truncate font-display text-[1.05rem] leading-snug',
+              'font-title text-[17px] font-medium leading-snug',
               done ? 'text-ink-soft line-through' : 'text-ink',
             )}
           >

@@ -7,7 +7,7 @@ import { useToodles } from '../../store/useToodles';
 
 /** Mobile brand row + desktop search box and "New task" button. */
 export function TopBar() {
-  const { openCreate, searchTerm, setSearchTerm } = useUi();
+  const { openQuickCreate, searchTerm, setSearchTerm } = useUi();
   const { data } = useToodles();
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,10 +67,10 @@ export function TopBar() {
 
         <Button
           className="hidden md:inline-flex lg:ml-0"
-          onClick={() => openCreate('task')}
+          onClick={openQuickCreate}
           icon={<Plus size={18} aria-hidden="true" />}
         >
-          New task
+          New
         </Button>
       </div>
     </header>

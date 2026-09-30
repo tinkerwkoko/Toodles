@@ -5,11 +5,14 @@ import { IconRail } from './IconRail';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
 import { CreateDialogs } from './CreateDialogs';
+import { QuickCreateSheet } from './QuickCreateSheet';
 import { Toasts } from '../ui/Toasts';
+import { useReminders } from '../../hooks/useReminders';
 
 /** Responsive frame: bottom bar on phones, icon rail on tablets, sidebar on desktop. */
 export function AppShell({ children }: { children: ReactNode }) {
   const location = useLocation();
+  useReminders();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -40,6 +43,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <BottomNav />
       <CreateDialogs />
+      <QuickCreateSheet />
       <Toasts />
     </div>
   );

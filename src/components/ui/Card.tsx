@@ -14,12 +14,12 @@ const PADDING = {
   lg: 'p-5 sm:p-6',
 } as const;
 
-/** Soft rounded surface used everywhere. */
+/** Flat card: cream surface, 1.5px border, 16px corners, no heavy shadow. */
 export function Card({ children, padding = 'md', className, ...rest }: CardProps) {
   return (
     <div
       className={cx(
-        'rounded-3xl border border-lilac-200 bg-cream shadow-soft',
+        'rounded-2xl border-[1.5px] border-lilac-200 bg-cream shadow-soft',
         PADDING[padding],
         className,
       )}

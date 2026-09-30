@@ -22,7 +22,7 @@ export function ProjectCard({ project, tasks, columns }: ProjectCardProps) {
     <Link
       to={`/projects/${project.id}`}
       className={cx(
-        'flex flex-col gap-3 rounded-3xl border bg-cream p-4 shadow-soft transition',
+        'flex flex-col gap-3 rounded-2xl border-[1.5px] bg-peach-100 p-4 shadow-soft transition',
         'hover:-translate-y-0.5 hover:shadow-lift',
         tone.border,
       )}
@@ -35,7 +35,7 @@ export function ProjectCard({ project, tasks, columns }: ProjectCardProps) {
           {project.emoji}
         </span>
         <div className="min-w-0 flex-1">
-          <h2 className="truncate font-display text-lg text-ink">{project.name}</h2>
+          <h2 className="truncate font-title text-lg font-medium text-ink">{project.name}</h2>
           {project.description && (
             <p className="mt-0.5 line-clamp-2 text-sm text-ink-soft">{project.description}</p>
           )}
@@ -45,7 +45,7 @@ export function ProjectCard({ project, tasks, columns }: ProjectCardProps) {
       <ProgressBar
         value={percent}
         label={`${project.name} progress`}
-        tone={percent === 100 && tasks.length > 0 ? 'bg-mint-500' : 'bg-lilac-500'}
+        tone={percent === 100 && tasks.length > 0 ? 'bg-mint-300' : 'bg-lilac-300'}
       />
 
       <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-ink-soft">
