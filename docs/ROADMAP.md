@@ -28,9 +28,78 @@ Tokens (dark, starting values): bg #1F1A20, sidebar #261F27, card #2B242D, prima
 Chewy: greeting, wordmark, section headings, button labels, big numbers. Handlee: body text, date line, sidebar labels, stat labels, tags, helper text, placeholders. Fredoka (500): task titles, project names, habit names; subtasks 400.
 Sizes: greeting 30px, section headings 18px, task titles 15px, body 14px, tags and meta 12px.
 
-## 4. Layout and navigation
-- Header runs the full width above the sidebar. Left to right: cat-head button that opens and closes the sidebar, the Toodles wordmark, search, and a profile icon that opens a small menu (display name saved locally, theme, export data, settings). No New task button in the header.
-- Sidebar (no Toodles heading, no footer text): My Nook, Tasks, Calendar, Focus, Projects, Tags, Diary, Mood and habits, Analytics, Settings. Pages that do not exist yet may be hidden until their round. Remove Today, Upcoming, Overdue and Completed from the sidebar, and remove any duplicate Overdue link. Old routes /today, /upcoming, /overdue and /completed redirect to /tasks with the matching tab.
-- Sidebar open or closed animates over about 250ms while the content area resizes without breaking. Save the state in settings.
-- Below the md breakpoint: no sidebar. Use a bottom nav with My Nook, Tasks, a raised center plus button, Projects and More. The plus opens a quick-create sheet (Task, Project, Diary entry, Habit, Mood). More opens a sheet with the remaining pages.
-- Tabs component: text tabs with a thin underline that slides to the active tab. Inactive tabs are faint (text-faint) and darken on hover.
+## 5. Home / My Nook
+- Greeting: "Good morning" in Chewy 30px, no sparkle emoji next to it.
+- Greeting banner: flat cream (#FFF6EF) background, peach border (#EBD3C4), no shadow.
+- Stat tiles: 4 tiles in a 2x2 grid on mobile, 4-across on desktop. Each tile has a tinted background (stat-1 through stat-4), a lucide icon, a big Fredoka 500 number, and a Handlee label below. No card borders.
+- Quick tiles: 6 tiles below stats, each a flat cream card with cream border, lucide icon, Fredoka number, Handlee label. Tinted backgrounds match their meaning (upcoming = sky tint, overdue = rose tint, etc.).
+- Today's list: plain rows separated by 1px dividers, not cards. Each row: checkbox, title (Fredoka 500, 15px), due date meta (Handlee 12px, text-2), priority dot. Completed rows get peach tint background and strikethrough title.
+- Empty state: cat illustration (sleepy pose), gentle sentence, CTA button.
+
+## 6. Task pages (All / Today / Upcoming / Overdue)
+- Full-width header above the sidebar (same as home).
+- Search bar in the header: flat cream card, peach border when focused, no shadow.
+- Filter bar: text tabs (All/Today/Upcoming/Overdue/Completed) with sliding underline.
+- Task list: plain rows, 1px dividers. Each row: checkbox (accent color outline when not done, filled peach when done), title (Fredoka 500), due date (Handlee 12px, text-2), priority dot, tags as small pill tags.
+- Overdue rows: rose tint background (#F0D5D5), small alarm icon, no red text.
+- Task detail modal/sheet: cream background, peach border, Fredoka title, Handlee body. Subtasks as checklist rows. Edit form inline.
+- No red anywhere on the page.
+
+## 7. Projects / Kanban
+- Projects list: flat cream cards with cream border, each card has emoji, project name (Fredoka 500), task count (Handlee), progress bar (peach track #F4C3A8, peach-deep fill #E59F7C).
+- Project detail: header with project name, edit/delete buttons, List/Board toggle tabs.
+- Board: columns are flat cream cards with 1px cream-border. Column header: column name (Fredoka 500), task count. Cards inside columns: flat cream, 1px cream-border, title in Fredoka 500, subtask progress bar, due date meta.
+- Column dialog: add/rename/reorder columns with color picker (peach, mint, butter, sky, rose, lilac).
+- Mobile board: horizontal scroll with snap, "Move to..." menu on each card.
+
+## 8. Diary / Mood / Habits
+- Diary list: plain rows, each row has date (Handlee 12px), title (Fredoka 500), mood indicator (colored dot).
+- Diary editor: cream card, peach border, title input, body textarea, mood picker, tags.
+- Mood calendar: monthly grid, each day is a small circle. Mood colors: Difficult #EADFEA, Low #D3E2EC, Okay #F6EAC2, Good #DCE6D3, Happy #F4D5C4.
+- Habits: weekly grid (7 columns), each cell is a small square. Checked cells have peach fill (#F4C3A8). Streak indicator below each habit name.
+- Empty states: cat illustration, gentle sentence, CTA.
+
+## 9. Settings / Export
+- Settings page: flat cream cards with cream borders, sections stacked vertically.
+- Export: button that downloads JSON, card has document icon and description.
+- Import: file input that reads JSON, validates, shows error if invalid.
+- Erase all: danger-toned card with rose border, confirmation dialog.
+- Notifications: permission status, request button. Note: reminders work only while app is open.
+- Profile menu: display name, theme toggle (light only now).
+
+## 10. Accessibility and responsive pass
+- Semantic HTML: nav, main, header, ul/li, button, label. One h1 per page.
+- All icon-only buttons have aria-label.
+- Focus rings: 2px solid #85697A with 2px outline-offset.
+- Keyboard: tabs use arrow keys, Escape to close modals, Enter to select.
+- Touch targets: minimum 44x44px on mobile, 30px desktop controls.
+- Reduced motion: animations disabled when prefers-reduced-motion is set.
+- No horizontal scroll at any width. Bottom nav on mobile, sidebar on desktop.
+- Status communicated with icons + text + strikethrough, not color alone.
+
+## 11. Cat mascot (color only)
+- Cat.tsx and CatFace.tsx: shapes, paths, poses, expressions, animations, timing, stroke widths, dimensions, viewBox must not change.
+- Only color values change via CSS variables.
+- Body/head fill: #FFFCFA
+- Outline/whiskers: #B592A4
+- Inner ears/cheeks/nose/pink accents: #F4C3A8
+- Eyes/mouth/dark details: #4A3540
+
+## 12. Welcome screen
+- Background: #F8F2EF (flat, no gradient).
+- Progress bar: track #F1E7E6, fill #D9BFCC.
+- Text: #4A3540.
+- Cat illustration, Toodles wordmark, tagline.
+- Rotate supporting line, tap to skip, ~2 second auto-dismiss.
+
+## 13. Final validation
+- Run npx tsc --noEmit and npm run build. Fix all errors.
+- Verify no old lilac hex values remain in src/ (#EDE3FA, #DCCBF4, #C6ADEC, #A484DA, #6E4FA8).
+- Verify no Nunito font references.
+- Verify all files under 500 lines.
+- Verify no duplicates, dead routes, fake data, localStorage regression.
+- Update AGENTS.md with final state.
+
+## 14. README
+- Create README.md with: project description, features, tech stack, local-first architecture, localStorage behavior, installation, dev/build commands, deployment guidance, notification limitation, known limitations.
+- No false feature claims.

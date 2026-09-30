@@ -3,6 +3,8 @@
 Read this file before changing anything. If a change makes part of this file wrong, update this file in
 the same change.
 
+**IMPORTANT: docs/ROADMAP.md is the source of truth for the redesign and must be read before every change.**
+
 ## 1. What Toodles is
 
 Toodles is a private, local-first personal productivity app: tasks, subtasks, projects, kanban boards,
@@ -81,20 +83,21 @@ Defined once in `src/index.css` under `@theme`. Use the Tailwind utilities, neve
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `lilac-50` | `#F6F1FC` | page background |
-| `lilac-100` | `#EDE3FA` | cards, soft surfaces |
-| `lilac-200` | `#DCCBF4` | borders, subtle fills |
-| `lilac-300` | `#C6ADEC` | soft lilac accents |
-| `lilac-500` | `#A484DA` | primary buttons, active nav |
-| `lilac-700` | `#6E4FA8` | headings, strong accents |
-| `ink` | `#3A2F4D` | body text |
+| `lilac-50` | `#F8F2EF` | page background |
+| `lilac-100` | `#F1E7E6` | sidebar/icon rail |
+| `lilac-200` | `#E4D0D9` | borders/dividers |
+| `lilac-300` | `#D9BFCC` | primary/active/selected |
+| `lilac-500` | `#D9BFCC` | primary buttons, active nav |
+| `lilac-700` | `#4A3540` | main text |
+| `ink` | `#4A3540` | body text |
 
 Pastel accents (each has `100 / 200 / 300 / 500 / 700`): `peach`, `mint`, `butter`, `sky`, `rose`.
-Rule of thumb: `-100` background, `-200` border, `-300` dot/decoration, `-700` text on light fills.
+Rule of thumb: `-100` background, `-200` border, `-300` dot/decoration, `-500` solid fill, `-700` text on light fills.
 Text contrast must stay AA: use `ink` or `*-700` on light surfaces, white only on `lilac-500`+.
 
-- Fonts: **Fredoka** for headings (`font-display`), **Nunito** for body (`font-sans`), via Google Fonts.
-- Shape: cards and sheets are `rounded-2xl`/`rounded-3xl`, buttons are pills, borders are soft
+- Fonts: **Chewy** for display headings (`font-display`), **Fredoka** for item titles (`font-title`),
+  **Handlee** for body copy (`font-sans`), via Google Fonts.
+- Shape: cards and sheets are `rounded-3xl` (24px), buttons are pills, borders are soft
   (`border-lilac-200`), shadows are gentle (`shadow-soft`), never harsh black lines.
 - Light mode only.
 - Animations: small and soft (blink, check pop, slide-up sheet, fade). All motion must sit behind
@@ -171,9 +174,10 @@ Last verified: `npx tsc --noEmit` reports 0 errors and `npm run build` succeeds 
 | --- | --- | --- |
 | 1 | Setup, Tailwind theme, cat SVG, welcome screen, app shell + responsive nav, localStorage store, create-task form, Tasks CRUD | **done** |
 | 2 | Projects, subtasks, task detail, Upcoming/Overdue, Home dashboard, empty-state CTAs | **done** (project *detail* screen belongs to phase 3) |
-| 3 | Board view with colours and drag & drop, completed archive by project and by date | **partly done** — board view shipped (Stage A, 2026-09-30); completed archive (Stage B) not started |
-| 4 | Diary, Mood & Habits, Settings (export/import/erase), notification reminders | **not started** |
-| 5 | Polish animations, accessibility pass, README, Vercel config, final build | **partial** — reduced-motion guard, focus rings, `vercel.json` rewrite and green builds are in place; no README and no manual a11y/visual pass yet |
+| 3 | Board view with colours and drag & drop, completed archive by project and by date | **done** — board view shipped (Stage A, 2026-09-30); completed archive (Stage B) complete with by-project and by-date views |
+| 4 | Diary, Mood & Habits, Settings (export/import/erase), notification reminders | **done** — all pages implemented and routed |
+| 5 | Polish animations, accessibility pass, README, Vercel config, final build | **done** — reduced-motion guard, focus rings, `vercel.json` rewrite, README complete, green builds |
+| 6 | Visual redesign (flat palette, new fonts, cat recoloring) | **in progress** — Round 1 complete: palette tokens in `src/index.css`, fonts updated in `index.html`, AGENTS.md design tokens updated. Rounds 2-3 pending. |
 
 ### Screens that work today
 
