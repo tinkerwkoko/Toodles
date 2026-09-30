@@ -18,6 +18,7 @@ import type {
   ToodlesData,
 } from '../types';
 import {
+  createDefaultBoardColumns,
   createDiaryEntry,
   createHabit,
   createProject,
@@ -43,6 +44,7 @@ import {
   insertTask,
   moveColumn,
   moveTaskToColumn,
+  placeTaskInColumn,
   removeColumn,
   removeDiaryEntry,
   removeHabit,
@@ -119,6 +121,17 @@ export function ToodlesProvider({ children }: { children: ReactNode }) {
         }),
       moveTaskToColumn: (taskId, columnId) =>
         mutate((current) => moveTaskToColumn(current, taskId, columnId)),
+      placeTaskOnBoard: (taskId, columnId, beforeTaskId) =>
+        mutate((current) => placeTaskInColumn(current, taskId, columnId, beforeTaskId)),
+      /** Never overwrites an existing board — only fills in a project that has none. */
+      ensureBoardColumns: (projectId) =>
+        mutate((current) => {
+          if (columnsForProject(current, projectId).length > 0) return current;
+          return createDefaultBoardColumns(projectId).reduce(
+            (next, column) => insertColumn(next, column),
+            current,
+          );
+        }),
 
       addSubtask: (taskId, title, color: AccentColor = 'lilac') =>
         mutate((current) => addSubtaskToTask(current, taskId, title, color)),

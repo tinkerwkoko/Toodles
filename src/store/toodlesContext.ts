@@ -29,6 +29,10 @@ export interface ToodlesActions {
   setTaskStatus: (id: string, status: TaskStatus) => void;
   toggleTaskDone: (id: string) => void;
   moveTaskToColumn: (taskId: string, columnId: string | null) => void;
+  /** Board drag-and-drop: puts a card in a column, optionally before another card. */
+  placeTaskOnBoard: (taskId: string, columnId: string, beforeTaskId: string | null) => void;
+  /** Seeds the default To do / Doing / Done columns only when a board is empty. */
+  ensureBoardColumns: (projectId: string) => void;
 
   addSubtask: (taskId: string, title: string, color?: AccentColor) => void;
   updateSubtask: (taskId: string, subtaskId: string, patch: Partial<Subtask>) => void;

@@ -171,7 +171,7 @@ Last verified: `npx tsc --noEmit` reports 0 errors and `npm run build` succeeds 
 | --- | --- | --- |
 | 1 | Setup, Tailwind theme, cat SVG, welcome screen, app shell + responsive nav, localStorage store, create-task form, Tasks CRUD | **done** |
 | 2 | Projects, subtasks, task detail, Upcoming/Overdue, Home dashboard, empty-state CTAs | **done** (project *detail* screen belongs to phase 3) |
-| 3 | Board view with colours and drag & drop, completed archive by project and by date | **not started** |
+| 3 | Board view with colours and drag & drop, completed archive by project and by date | **partly done** — board view shipped (Stage A, 2026-09-30); completed archive (Stage B) not started |
 | 4 | Diary, Mood & Habits, Settings (export/import/erase), notification reminders | **not started** |
 | 5 | Polish animations, accessibility pass, README, Vercel config, final build | **partial** — reduced-motion guard, focus rings, `vercel.json` rewrite and green builds are in place; no README and no manual a11y/visual pass yet |
 
@@ -180,7 +180,9 @@ Last verified: `npx tsc --noEmit` reports 0 errors and `npm run build` succeeds 
 - Welcome / splash — `src/components/WelcomeScreen.tsx` (tap to skip, ~1.9 s)
 - Home / overview — `src/pages/HomePage.tsx` (greeting, stat tiles, quick tiles, mood + habit snapshots, brand-new empty state)
 - Tasks — `src/pages/TasksPage.tsx` renders `/tasks`, `/today`, `/upcoming`, `/overdue`, `/completed` with search, project/priority/tag filters, sort, day grouping and per-task menu
-- Projects list — `src/pages/ProjectsPage.tsx` (creating a project also creates its To do / Doing / Done columns)
+- Projects list — `src/pages/ProjectsPage.tsx` (route `/projects`; creating a project also creates its To do / Doing / Done columns)
+- Project detail — `src/pages/ProjectDetailPage.tsx` (route `/projects/:id`): header with progress and back link, List | Board toggle, edit + delete project dialogs
+- Kanban board — `src/components/board/BoardView.tsx` + `BoardColumnView.tsx` + `BoardCard.tsx` + `ColumnDialog.tsx`. Drag and drop with `@dnd-kit` from `md` up; on phones the columns scroll sideways with snap and every card has a "Move to…" menu, so dragging is never required
 - Task detail — two-pane on `lg`, modal below; live subtasks, per-step colour menu, edit + save, delete confirmation
 
 ### Built but not mounted in a route yet
@@ -188,15 +190,18 @@ Last verified: `npx tsc --noEmit` reports 0 errors and `npm run build` succeeds 
 Type-checked and working at component/store level, waiting for their page:
 
 - `src/components/diary/DiaryForm.tsx`, `src/components/habits/MoodPicker.tsx`, `src/components/CatFace.tsx`
-- board logic: `placeTaskInColumn`, `addColumn`, `updateColumn`, `deleteColumn`, `moveColumn` in `src/store/mutations.ts`
 - `exportJson` / `parseImport` / `clearStoredData` in `src/store/storage.ts`
-- `src/hooks/useMediaQuery.ts` — `useIsDesktop` drives the two-pane task view
+
+Board notes for future agents:
+
+- All board logic already lives in `src/store/mutations.ts` (`placeTaskInColumn`, `insertColumn`, `replaceColumn`, `removeColumn`, `moveColumn`, `columnsForProject`). Do not add a second board store.
+- `actions.ensureBoardColumns(projectId)` only seeds To do / Doing / Done when a project has **no** columns. It never overwrites an existing board.
+- `actions.placeTaskOnBoard(taskId, columnId, beforeTaskId)` is what drag and drop and the card "Move to…" menu both call; it also keeps `status`/`completedAt` in step with the last column.
 
 ### Known gaps
 
-- `/projects/:id`, `/diary`, `/wellbeing` and `/settings` render the placeholder card in `src/App.tsx`; register each route as its page lands and remove the placeholder once nothing uses it.
-- `/completed` is the Completed *task view*, not the year/month archive.
+- `/diary`, `/wellbeing` and `/settings` render the placeholder card in `src/App.tsx`; register each route as its page lands and remove the placeholder once nothing uses it.
+- `/projects` and `/projects/:id` are mounted (Stage A). `/projects` was missing from the router before Stage A — keep both routes registered.
+- `/completed` is the Completed *task view*, not the year/month archive (Stage B).
 - Habits have helpers in `src/lib/habit.ts` but no HabitGrid / week-grid UI yet.
 - No README.md yet.
-
-- Every mutation is a named function on the context — no ad-hoc persistence code in components.

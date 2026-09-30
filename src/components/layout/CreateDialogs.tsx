@@ -32,7 +32,12 @@ export function CreateDialogs() {
           submitLabel="Create task"
           hint="Only a title is needed — you can always add more later."
           onSubmit={(values) => {
-            const created = actions.addTask(formValuesToInput(values));
+            const input = formValuesToInput(values);
+            // Keep the column a board card was added from.
+            const created = actions.addTask({
+              ...input,
+              boardColumnId: create.defaults?.boardColumnId ?? input.boardColumnId ?? null,
+            });
             pushToast(`“${created.title}” is tucked away ✨`, 'success');
             closeCreate();
           }}

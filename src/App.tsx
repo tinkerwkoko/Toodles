@@ -4,6 +4,8 @@ import { Cat } from './components/Cat';
 import { AppShell } from './components/layout/AppShell';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { HomePage } from './pages/HomePage';
+import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { ProjectsPage } from './pages/ProjectsPage';
 import { TasksPage } from './pages/TasksPage';
 import { ToodlesProvider } from './store/ToodlesProvider';
 import { UiProvider } from './store/UiProvider';
@@ -28,6 +30,8 @@ export default function App() {
               <Route path="/upcoming" element={<TasksPage scope="upcoming" />} />
               <Route path="/overdue" element={<TasksPage scope="overdue" />} />
               <Route path="/completed" element={<TasksPage scope="completed" />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:id" element={<ProjectDetailPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AppShell>
